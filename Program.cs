@@ -1,8 +1,13 @@
-var builder = WebApplication.CreateBuilder(args);
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using StudentGrades.Data;
 
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddDbContext<StudentGradesDbContext>(options =>
+    options.UseSqlite("Data Source=studentGrades.db"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
